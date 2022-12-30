@@ -24,10 +24,10 @@ namespace BinarySearchThree
 
     /* A node class consist os three things, the information, reference to the right child, and reference to the left child */
 
-    class BinaryThree
+    class BinaryTree
     {
         public Node ROOT;
-        public BinaryThree()
+        public BinaryTree()
         {
             ROOT = null; /* Initializing ROOT to null */
         }
@@ -36,7 +36,7 @@ namespace BinarySearchThree
         {
             Node tmp, parent = null, currentNode = null;
             Search(element, ref parent, ref currentNode);
-            if (currentNode != null ) /*Check if the node to be inserted already inserted or not */
+            if (currentNode != null) /*Check if the node to be inserted already inserted or not */
             {
                 Console.WriteLine("Duplicate words not allowed");
                 return;
@@ -48,7 +48,7 @@ namespace BinarySearchThree
                 {
                     ROOT = tmp;
                 }
-                else if (string.Compare(element, parent.info) <0 )
+                else if (string.Compare(element, parent.info) < 0)
                 {
                     parent.leftchild = tmp;
                 }
@@ -65,12 +65,12 @@ namespace BinarySearchThree
 
             currentNode = ROOT;
             parent = null;
-            while ((currentNode !=null) && (currentNode.info != element))
+            while ((currentNode != null) && (currentNode.info != element))
             {
                 parent = currentNode;
-                if (string.Compare(element, parent.info) <0)
+                if (string.Compare(element, parent.info) < 0)
                     currentNode = currentNode.leftchild;
-                else 
+                else
                     currentNode = currentNode.rightchild;
             }
         }
@@ -81,7 +81,7 @@ namespace BinarySearchThree
                 Console.WriteLine("Tree is empty");
                 return;
             }
-            if(ptr != null)
+            if (ptr != null)
             {
                 inorder(ptr.leftchild);
                 Console.Write(ptr.info + " ");
@@ -107,7 +107,7 @@ namespace BinarySearchThree
             if (ROOT == null)
             {
                 Console.WriteLine("Tree is empty");
-                return ;
+                return;
             }
             if (ptr != null)
             {
@@ -116,11 +116,57 @@ namespace BinarySearchThree
                 Console.Write(ptr.info + " ");
             }
         }
-    }
-    internal class Program
-    {
         static void Main(string[] args)
         {
+            BinaryTree x = new BinaryTree();
+            while (true)
+            {
+                Console.WriteLine("\nMenu");
+                Console.WriteLine("1. Implement insert operation");
+                Console.WriteLine("2. Perform inorder traversal");
+                Console.WriteLine("3. Perform preorder traversal");
+                Console.WriteLine("4. Perform postorder traversal");
+                Console.WriteLine("5. Exit");
+                char ch = Convert.ToChar(Console.ReadLine());
+                Console.WriteLine();
+                switch (ch)
+                {
+                    case '1':
+                        {
+                            Console.Write("Enter a word : ");
+                            String word = Console.ReadLine();
+                            x.insert(word);
+                        }
+                        break;
+                    case '2':
+                        {
+                            x.inorder(x.ROOT);
+                        }
+                        break;
+                    case '3':
+                        {
+                            x.preorder(x.ROOT);
+                        }
+                        break;
+                    case '4':
+                        {
+                            x.postorder(x.ROOT);
+                        }
+                        break;
+                    case '5':
+                        return;
+                    default:
+                        {
+                            Console.WriteLine("Invalid Option");
+                            break;
+                        }
+
+                }
+            }
+
+
         }
     }
+
+   
 }
