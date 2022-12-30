@@ -58,6 +58,22 @@ namespace BinarySearchThree
                 }
             }
         }
+        public void search(string element, ref Node parent, ref Node currentNode)
+        {
+            /*This function searches the currentNode of the specified Node as
+             * well as the current Node of its parent */
+
+            currentNode = ROOT;
+            parent = null;
+            while ((currentNode !=null) && (currentNode.info != element))
+            {
+                parent = currentNode;
+                if (string.Compare(element, parent.info) <0)
+                    currentNode = currentNode.leftchild;
+                else 
+                    currentNode = currentNode.rightchild;
+            }
+        }
 
     }
     internal class Program
